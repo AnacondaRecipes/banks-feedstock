@@ -1,6 +1,5 @@
 {% set name = "banks" %}
 {% set version = "2.4.1" %}
-{% set python_min = "3.10" %}
 
 package:
   name: {{ name|lower }}
@@ -11,18 +10,18 @@ source:
   sha256: 8cbf1553f14c44d4f7e9c2064ad9212ce53ee4da000b2f8308d548b60db56655
 
 build:
+  skip: true # [py<310]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  noarch: python
   number: 0
 
 requirements:
   host:
-    - python {{ python_min }}
+    - python
     - hatchling
     - pip
   run:
     - filetype >=1.2.0
-    - python >={{ python_min }}
+    - python
     - griffe
     - jinja2
     - pydantic
@@ -36,13 +35,19 @@ test:
     - pip check
   requires:
     - pip
-    - python {{ python_min }}
+    - python
 
 about:
-  summary: A prompt programming language
   home: https://github.com/masci/banks
+  summary: A prompt programming language
+  description: |
+    Banks is the linguist professor who will help you generate meaningful LLM
+    prompts using a template language that makes sense.
   license: MIT
   license_file: LICENSE.txt
+  license_family: MIT
+  doc_url: https://masci.github.io/banks/
+  dev_url: https://github.com/masci/banks
 
 extra:
   recipe-maintainers:
