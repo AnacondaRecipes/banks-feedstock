@@ -24,6 +24,7 @@ requirements:
     - griffe
     - jinja2
     - pydantic
+    - deprecated
     - eval-type-backport  # [py<310]
     - platformdirs
     - filetype >=1.2.0
