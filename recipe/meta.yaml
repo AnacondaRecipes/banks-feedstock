@@ -1,5 +1,5 @@
 {% set name = "banks" %}
-{% set version = "2.4.5" %}
+{% set version = "2.5.1" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: ff575732fc67d5493a73c21e0d7268bc49e86fff02b0b8735e8efb9fcb9af3a4
+  sha256: a7ca5c250b605ae90cfd6e4ca5dd6ce2ee377d5d59021b6feba44e345910026d
 
 build:
   number: 0
@@ -26,9 +26,12 @@ requirements:
     - pydantic
     - deprecated
     - eval-type-backport  # [py<310]
+    - typing-extensions  # [py<311]
     - platformdirs
     - filetype >=1.2.0
 
+# Tests disabled for the moment because no `distutils` available
+# E   ModuleNotFoundError: No module named 'distutils'
 test:
   imports:
     - banks
@@ -36,7 +39,6 @@ test:
     - pip check
   requires:
     - pip
-    - python
 
 about:
   home: https://github.com/masci/banks
@@ -47,7 +49,7 @@ about:
   license: MIT
   license_file: LICENSE.txt
   license_family: MIT
-  doc_url: https://masci.github.io/banks/
+  doc_url: https://masci.github.io/banks
   dev_url: https://github.com/masci/banks
 
 extra:
