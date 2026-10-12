@@ -37,12 +37,12 @@ test:
     - banks
   commands:
     - pip check
-    - pytest tests
+    - pytest -vv tests
   requires:
     - pip
     - pytest
     - setuptools
-    - redis
+    - redis-py
     - regex
     - litellm
     - pytest-asyncio
