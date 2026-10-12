@@ -30,15 +30,22 @@ requirements:
     - platformdirs
     - filetype >=1.2.0
 
-# Tests disabled for the moment because no `distutils` available
-# E   ModuleNotFoundError: No module named 'distutils'
 test:
+  source_files:
+    - tests
   imports:
     - banks
   commands:
     - pip check
+    - pytest tests
   requires:
     - pip
+    - pytest
+    - setuptools
+    - redis
+    - regex
+    - litellm
+    - pytest-asyncio
 
 about:
   home: https://github.com/masci/banks
